@@ -2,6 +2,7 @@ import SiteLayout from "../components/SiteLayout";
 import UserProvider from "../contexts/user";
 import NotificationProvider from "../middlewares/Notification";
 import "../styles/globals.css";
+import "../styles/utils.css";
 
 function MyApp({ Component, pageProps }) {
   return (

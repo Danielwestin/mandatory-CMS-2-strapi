@@ -1,0 +1,37 @@
+.card {
+  height: 70vh;
+  position: relative;
+  box-sizing: border-box;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.card img {
+  object-fit: cover;
+  z-index: -1;
+}
+
+.card p {
+  z-index: 10;
+  color: white;
+  font-size: 29px;
+}
+
+.small {
+  flex: 0 0 15%;
+}
+
+.medium {
+  flex: 0 0 calc(33.3333333% - 2rem);
+}
+
+.large {
+  flex: 0 0 calc(50% - 2rem);
+}
+
+@media (max-width: 600px) {
+  .card {
+    flex: 0 0 calc(100% - 2rem);
+    height: 50vh;
+  }
+} ;

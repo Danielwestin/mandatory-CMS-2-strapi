@@ -1,0 +1,9 @@
+.Categories {
+  padding: 2rem;
+}
+
+.Articles {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+}

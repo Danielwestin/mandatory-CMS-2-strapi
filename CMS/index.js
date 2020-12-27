@@ -18,9 +18,9 @@ class CMSClient {
 
   async get(url = "") {
     const response = await fetch(this.CMS_ROOT + url);
-
     if (!response.ok) {
       const { data } = await response.json();
+
       throw new Error(data[0].messages[0].message);
     }
 
@@ -58,6 +58,11 @@ class CMSClient {
 
   async category(id) {
     return await this.get(`/categories/${id}`);
+  }
+
+  // Articles methods
+  async articles() {
+    return await this.get("/articles");
   }
 }
 

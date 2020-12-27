@@ -10,7 +10,6 @@ export default function Category({ category }) {
       {category.products.map((product) => (
         <>
           <p>{product.title}</p>
-          {console.log(`localhost:1337${product.image.url}`)};
           <img src={`http://localhost:1337${product.image.url}`} />
         </>
       ))}
@@ -18,9 +17,12 @@ export default function Category({ category }) {
   );
 }
 
-export async function getStaticProps(ctx) {
-  console.log(ctx);
+//getServerSide: Om något behöver renderas om ofta.
+//getStaticPath: Om något ändras väldigt sällan.
+
+export async function getServerSideProps(ctx) {
   const category = await CMS.category(ctx.params.id);
+
   return {
     props: {
       category,
@@ -28,11 +30,11 @@ export async function getStaticProps(ctx) {
   };
 }
 
-export async function getStaticPaths(ctx) {
-  const categories = await CMS.categories();
+// export async function getStaticPaths(ctx) {
+//   const categories = await CMS.categories();
 
-  return {
-    paths: categories.map(({ id }) => `/categories/${id}`),
-    fallback: true,
-  };
-}
+//   return {
+//     paths: categories.map(({ id }) => `/categories/${id}`),
+//     fallback: true,
+//   };
+// }

@@ -24,13 +24,13 @@ export default function SiteHeader() {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.dropdownParent}>
+      <nav className="dropdownParent">
         categories
-        <ul className={styles.dropdown} style={{ backgroundColor: "red" }}>
-          {categories.map(({ id, title }) => (
-            <li key={title}>
+        <ul className="dropdown dropdownAlignLeft">
+          {categories.map(({ id, test }) => (
+            <li key={test}>
               <Link href="/categories/[id]" as={`/categories/${id}`}>
-                <a>{title}</a>
+                <a>{test}</a>
               </Link>
             </li>
           ))}
@@ -40,11 +40,11 @@ export default function SiteHeader() {
         <a>Logo</a>
       </Link>
       <section>
-        <nav className={styles.rightNav}>
-          <ul>
-            <li>
+        <nav>
+          <ul className={styles.loginAndCart}>
+            <li className="dropdownParent">
               <button onClick={handleLoginOrLogout}>{buttonLabel}</button>
-              <nav className={styles.dropdown}>
+              <nav className="dropdown dropdownAlignRight">
                 <ul>
                   <li>
                     <button onClick={handleLoginOrLogout}>{buttonLabel}</button>
@@ -67,11 +67,11 @@ export default function SiteHeader() {
                 </ul>
               </nav>
             </li>
-            <li>
+            <li className="dropdownParent">
               <Link href="/cart">
                 <a>Cart</a>
               </Link>
-              <section className={styles.dropdown}>
+              <section className="dropdown dropdownAlignRight">
                 <ul>
                   <li>fruits</li>
                   <li>fruits</li>
