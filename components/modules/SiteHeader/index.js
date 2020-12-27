@@ -27,10 +27,10 @@ export default function SiteHeader() {
       <nav className="dropdownParent">
         categories
         <ul className="dropdown dropdownAlignLeft">
-          {categories.map(({ id, test }) => (
-            <li key={test}>
+          {categories.map(({ id, title }) => (
+            <li key={title}>
               <Link href="/categories/[id]" as={`/categories/${id}`}>
-                <a>{test}</a>
+                <a>{title}</a>
               </Link>
             </li>
           ))}
