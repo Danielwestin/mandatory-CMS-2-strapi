@@ -15,14 +15,22 @@
   z-index: -1;
 }
 
-.card p {
+.card h1 {
   z-index: 10;
-  color: white;
-  font-size: 29px;
+  color: rgb(255, 215, 40);
+  font-size: 3.5rem;
+}
+
+.card p {
+  color: rgb(250, 212, 41);
+
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .small {
   flex: 0 0 15%;
+  justify-content: flex-end;
 }
 
 .medium {

@@ -5,5 +5,9 @@
 .Articles {
   display: flex;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+.carouselWrapper {
+  padding: 1rem;
 }

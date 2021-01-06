@@ -1,0 +1,61 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
+.header svg {
+  height: 240px;
+  width: 240px;
+}
+
+.header form {
+  width: 50%;
+}
+
+.header form,
+.header label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header label {
+  /* margin-left: 2rem; */
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.details {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.details li {
+  position: relative;
+}
+
+.details li:not(:last-child):after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  bottom: -10px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.footer button {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}

@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  height: 480px;
+  width: 340px;
+  position: relative;
+}
+
+.list {
+  height: 430px;
+  width: 340px;
+  padding: 1rem;
+}
+
+.cartForm {
+  padding: 1rem;
+}

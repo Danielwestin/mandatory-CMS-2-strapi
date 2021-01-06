@@ -8,3 +8,106 @@
 .loginAndCart {
   display: flex;
 }
+
+.header {
+  display: flex;
+  padding: 24px 36px;
+  justify-content: space-between;
+}
+
+.header > nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.header > a {
+  flex: 1;
+}
+
+.header > nav:last-of-type {
+  justify-content: flex-end;
+}
+
+.header > nav > div:not(:last-child) {
+  margin-right: 18px;
+}
+
+.header nav > div > a,
+.header nav > div > button {
+  font-family: var(--bread-font);
+  padding: 8px 12px;
+  position: relative;
+  border: 1px solid var(--primary-black);
+  border-top-width: 0;
+  border-right-width: 0;
+}
+
+.header nav > div > a::after,
+.header nav > div > a::before,
+.header nav > div > button::after,
+.header nav > div > button::before {
+  content: "";
+  position: absolute;
+  background: black;
+  transition: transform 80ms ease-in-out;
+}
+
+.header nav > div > a::after,
+.header nav > div > button::after {
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.header nav > div:hover > a::after,
+.header nav > div:hover > button::after {
+  transform: scaleX(1);
+}
+
+.header nav > div > a::before,
+.header nav > div > button::before {
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 1px;
+  transform-origin: bottom;
+  transform: scaleY(0);
+}
+
+.header nav > div:hover > a::before,
+.header nav > div:hover > button::before {
+  transform: scaleY(1);
+}
+
+.cart {
+  min-width: 320px;
+  min-height: 80px;
+  padding: 1rem;
+  background-color: white;
+  z-index: 999;
+}
+
+.cart > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoriesDropdown {
+  width: 150px;
+  padding: 1rem;
+}
+.categoriesDropdown > li {
+  position: relative;
+}
+.categoriesDropdown > li svg {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-25%);
+}

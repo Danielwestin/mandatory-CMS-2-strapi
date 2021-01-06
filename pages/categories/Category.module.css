@@ -1,0 +1,31 @@
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.title {
+  z-index: -1;
+  margin-bottom: 36px;
+  text-align: center;
+  position: relative;
+}
+
+.title::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 10px;
+  width: 40%;
+  height: 1px;
+  background-color: black;
+}
+.title::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: 10px;
+  width: 40%;
+  height: 1px;
+  background-color: black;
+}

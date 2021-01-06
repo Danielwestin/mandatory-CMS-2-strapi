@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CMS from "../../../cms";
+import { useCloseModal } from "../../../contexts/modal";
 import { useNotify } from "../../../contexts/notification";
 import { useSetUser } from "../../../contexts/user";
 import Modal from "../../ui/Modal";
@@ -12,10 +13,11 @@ const initialFormValues = {
   [PASSWORD]: "",
 };
 
-export default function LoginModal({ close }) {
+export default function LoginModal() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const setUser = useSetUser();
   const notify = useNotify();
+  const closeModal = useCloseModal();
 
   function handleChange(e) {
     setFormValues({
@@ -31,7 +33,7 @@ export default function LoginModal({ close }) {
       const { jwt, user } = await CMS.login(formValues);
       CMS.setJWT(jwt);
       setUser(user);
-      close();
+      closeModal();
     } catch (e) {
       notify({
         type: "error",
@@ -41,7 +43,7 @@ export default function LoginModal({ close }) {
   }
 
   return (
-    <Modal close={close}>
+    <Modal>
       <div>Login</div>
       <form onSubmit={handleSubmit}>
         <input

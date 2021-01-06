@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.thumbnail {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 18px;
+}
+
+.priceDetails {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  min-width: 82px;
+}
+
+.priceDetails h2 {
+  font-size: 1.15rem;
+}
+
+.priceDetails span,
+.priceDetails b {
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 72px;
+  padding-left: 8px;
+}

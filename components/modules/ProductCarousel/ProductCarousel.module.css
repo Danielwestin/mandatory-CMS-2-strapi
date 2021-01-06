@@ -1,0 +1,39 @@
+.wrapper {
+  max-width: 100%;
+  display: flex;
+}
+
+.carousel {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 90%;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.article:not(:last-child) {
+  margin-right: 18px;
+}
+
+.wrapper svg {
+  width: 24px;
+  transition: 200ms ease-out;
+  transform: translateX(0);
+}
+
+.wrapper button {
+  flex: 0 0 5%;
+}
+
+.wrapper > button:first-child {
+  transform: rotate(180deg);
+}
+
+.wrapper > button:hover svg {
+  transform: translateX(8px);
+}

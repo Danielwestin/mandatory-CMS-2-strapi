@@ -1,68 +1,60 @@
-function objectToFormData(obj) {
-  const formData = new FormData();
+import { STRAPI_URL } from "../library/constants";
 
-  Object.entries(obj).forEach(([key, value]) => {
-    formData.append(key, value);
-  });
-
-  return formData;
-}
+import Fetch from "../library/fetch.js";
 
 class CMSClient {
-  CMS_ROOT = "http://localhost:1337";
-  JWT = "";
+  constructor() {
+    Fetch.rootUrl = STRAPI_URL;
+  }
 
+  // Utility functions
   setJWT(jwt) {
-    this.JWT = jwt;
+    Fetch.token = jwt;
   }
 
-  async get(url = "") {
-    const response = await fetch(this.CMS_ROOT + url);
-    if (!response.ok) {
-      const { data } = await response.json();
-
-      throw new Error(data[0].messages[0].message);
-    }
-
-    return await response.json();
-  }
-
-  async post(url = "", body = {}) {
-    const response = await fetch(this.CMS_ROOT + url, {
-      method: "post",
-      body: objectToFormData(body),
-    });
-
-    if (!response.ok) {
-      const { data } = await response.json();
-      throw new Error(data[0].messages[0].message);
-    }
-
-    return await response.json();
-  }
-
-  // Authentication methods
+  // User methods
   async login(credentials) {
-    const user = await this.post("/auth/local", credentials);
-    return user;
+    return await Fetch.post("/auth/local", credentials);
   }
 
   async register(details) {
-    const user = await this.post("/auth/local/register", details);
-    return user;
+    return await Fetch.post("/auth/local/register", details);
   }
 
+  // Article methods
+  async articles() {
+    return await Fetch.get("/articles");
+  }
+
+  // Category methods
   async categories() {
-    return await this.get("/categories");
+    return await Fetch.get("/categories");
   }
 
   async category(id) {
-    return await this.get(`/categories/${id}`);
+    return await Fetch.get("/categories/" + id);
   }
 
-  // Articles methods
-  async articles() {
-    return await this.get("/articles");
+  // Products methods
+  async product(id = 1) {
+    return await Fetch.get("/products/" + id);
+  }
+
+  async products(query = "") {
+    return await Fetch.get("/products" + query);
+  }
+
+  async productCount() {
+    return await Fetch.get("/products/count");
+  }
+
+  async productPaths() {
+    return await Fetch.get("/products/paths");
+  }
+
+  // Order methods
+  async placeOrder(details) {
+    return await Fetch.post("/orders", details);
   }
 }
 

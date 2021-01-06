@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import NotificationContext from "../../contexts/notification";
 import styles from "./Notification.module.css";
 
-export default function NotificationProvider({ children }) {
+export default function NotificationMiddleware({ children }) {
   const [notification, notify] = useState();
 
   useEffect(() => {
     if (notification) {
-      setTimeout(() => notify(), 2000);
+      setTimeout(() => notify(), 5000);
     }
   }, [notification]);
 

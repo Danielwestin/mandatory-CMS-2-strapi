@@ -1,19 +1,20 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import CMS from "../../cms";
+import ProductCard from "../../components/modules/ProductCard";
+import { capitalize, pluralize } from "../../library/strings";
+import styles from "./Category.module.css";
 
 export default function Category({ category }) {
   console.log(category);
+
   return (
-    <div>
-      category {category.id}
-      {category.products.map((product) => (
-        <>
-          <p>{product.title}</p>
-          <img src={`http://localhost:1337${product.image.url}`} />
-        </>
-      ))}
-    </div>
+    <>
+      <h1 className={styles.title}>{capitalize(category.title)}</h1>
+      <section className={styles.section}>
+        {category.products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </section>
+    </>
   );
 }
 
