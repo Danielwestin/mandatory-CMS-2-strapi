@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import CMS from "../../cms";
 import { useNotify } from "../../contexts/notification";
-import { useSetUser } from "../../contexts/user";
+import { useLoginUser } from "../../contexts/user";
 
 const inputs = [
   { name: "username", type: "text", required: true, label: "Username" },
@@ -21,18 +21,20 @@ const initialFormValues = inputs.reduce((acc, { name }) => {
 
 export default function Registration() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const setUser = useSetUser();
+  const loginUser = useLoginUser();
   const notify = useNotify();
   const router = useRouter();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    console.log(formValues);
+
     try {
       const { jwt, user } = await CMS.register(formValues);
 
       CMS.setJWT(jwt);
-      setUser(user);
+      loginUser(user);
 
       notify({ type: "success", content: "Account successfully created." });
       router.push("/");

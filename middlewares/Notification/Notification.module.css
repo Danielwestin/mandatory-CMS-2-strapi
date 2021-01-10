@@ -3,9 +3,22 @@
 }
 
 .info {
-  background-color: yellow;
+  background-color: rgb(253, 213, 34);
 }
 
 .success {
   background-color: green;
+}
+
+.default {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: bold;
 }

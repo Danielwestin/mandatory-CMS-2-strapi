@@ -33,7 +33,7 @@
   margin-right: 18px;
 }
 
-.header nav > div > a,
+/* .header nav > div > a,
 .header nav > div > button {
   font-family: var(--bread-font);
   padding: 8px 12px;
@@ -81,7 +81,7 @@
 .header nav > div:hover > a::before,
 .header nav > div:hover > button::before {
   transform: scaleY(1);
-}
+} */
 
 .cart {
   min-width: 320px;

@@ -1,13 +1,22 @@
 import { createContext, useContext, useState } from "react";
+import Fetch from "../../library/fetch";
 
 const UserContext = createContext();
 
-export function useUser() {
-  return useContext(UserContext).user;
+export function useLoginUser() {
+  return useContext(UserContext).setUser;
 }
 
-export function useSetUser() {
-  return useContext(UserContext).setUser;
+export function useLogoutUser() {
+  const setUser = useContext(UserContext).setUser;
+  return () => {
+    Fetch.token = "";
+    setUser(undefined);
+  };
+}
+
+export function useUser() {
+  return useContext(UserContext).user;
 }
 
 export default function UserProvider({ children }) {

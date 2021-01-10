@@ -56,6 +56,19 @@ class CMSClient {
   async placeOrder(details) {
     return await Fetch.post("/orders", details);
   }
+
+  async getOrders() {
+    return await Fetch.get("/orders");
+  }
+
+  async deleteOrder(id) {
+    return await Fetch.delete("/orders/" + id);
+  }
+
+  // User methods
+  async updateUser(id, data) {
+    return await Fetch.put("/users/" + id, data);
+  }
 }
 
 const CMS = new CMSClient();

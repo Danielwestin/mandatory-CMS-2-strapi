@@ -7,7 +7,7 @@ export default function Layout({ children, categories }) {
     <div>
       <Head>
         <title>Fruit King</title>
-        <link rel="icon" href="../../public/Banana.ico" />
+        <link rel="icon" href="./Banana.ico" />
       </Head>
       <SiteHeader categories={categories} />
       <main className={styles.main}>{children}</main>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import CMS from "../../cms";
 import CartItem from "../../components/modules/CartItem";
 import CheckoutIcon from "../../components/svg/Checkout";
@@ -7,6 +8,7 @@ import { useCartContext } from "../../contexts/cart";
 import { useNotify } from "../../contexts/notification";
 import { useUser } from "../../contexts/user";
 import { desnakeify, titleize } from "../../library/strings";
+
 import styles from "./Checkout.module.css";
 
 const inputs = [
@@ -22,8 +24,9 @@ function toTotalAmount(acc, cur) {
 }
 
 export default function Cart() {
+  const router = useRouter();
   const notify = useNotify();
-  const { cart } = useCartContext();
+  const { cart, clearCart } = useCartContext();
   const user = useUser();
   const [formValues, setFormValues] = useState({
     email: user?.email || "",
@@ -52,6 +55,13 @@ export default function Cart() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!user) {
+      return notify({
+        type: "info",
+        content: "Please login to place an order",
+      });
+    }
+
     try {
       const body = {
         ...formValues,
@@ -64,7 +74,20 @@ export default function Cart() {
         customer: user.id,
       };
       const response = await CMS.placeOrder(body);
-      // console.log("is ok", response);
+      console.log("is ok", response);
+      setFormValues(() => ({
+        email: "",
+        phone: "",
+        street: "",
+        city: "",
+        zip_code: "",
+      }));
+      clearCart();
+      router.push("/orders");
+      notify({
+        type: "success",
+        content: "Woho! Congrats, your order has been placed.",
+      });
     } catch ({ message }) {
       notify({
         type: "error",

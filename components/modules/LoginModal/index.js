@@ -2,7 +2,7 @@ import { useState } from "react";
 import CMS from "../../../cms";
 import { useCloseModal } from "../../../contexts/modal";
 import { useNotify } from "../../../contexts/notification";
-import { useSetUser } from "../../../contexts/user";
+import { useLoginUser } from "../../../contexts/user";
 import Modal from "../../ui/Modal";
 
 const IDENTIFIER = "identifier";
@@ -15,7 +15,7 @@ const initialFormValues = {
 
 export default function LoginModal() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const setUser = useSetUser();
+  const loginUser = useLoginUser();
   const notify = useNotify();
   const closeModal = useCloseModal();
 
@@ -32,7 +32,7 @@ export default function LoginModal() {
     try {
       const { jwt, user } = await CMS.login(formValues);
       CMS.setJWT(jwt);
-      setUser(user);
+      loginUser(user);
       closeModal();
     } catch (e) {
       notify({
@@ -47,6 +47,7 @@ export default function LoginModal() {
       <div>Login</div>
       <form onSubmit={handleSubmit}>
         <input
+          autoFocus
           name={IDENTIFIER}
           type="text"
           value={formValues[IDENTIFIER]}

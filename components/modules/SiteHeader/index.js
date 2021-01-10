@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useCart, useClearCart } from "../../../contexts/cart";
 import { useSetModal } from "../../../contexts/modal";
-import { useSetUser, useUser } from "../../../contexts/user";
+import { useLogoutUser, useSetUser, useUser } from "../../../contexts/user";
 import { pluralize } from "../../../library/strings";
 import CartItem from "../CartItem";
 import styles from "./SiteHeader.module.css";
@@ -13,13 +13,13 @@ import ArrowRight from "../../svg/ArrowRight";
 export default function SiteHeader({ categories }) {
   const setModal = useSetModal();
   const user = useUser();
-  const setUser = useSetUser();
+  const logoutUser = useLogoutUser();
   const cart = useCart();
   const clearCart = useClearCart();
 
   const buttonLabel = user ? "Logout" : "Login";
   const handleLoginOrLogout = () =>
-    user ? setUser(undefined) : setModal("LoginModal");
+    user ? logoutUser() : setModal("LoginModal");
 
   return (
     <header className={styles.header}>
@@ -46,6 +46,7 @@ export default function SiteHeader({ categories }) {
       <Link href="/">
         <a>logo</a>
       </Link>
+
       <nav>
         <div className="dropdownParent">
           <button onClick={handleLoginOrLogout}>
@@ -55,21 +56,26 @@ export default function SiteHeader({ categories }) {
             <li>
               <button onClick={handleLoginOrLogout}>{buttonLabel}</button>
             </li>
-            <li>
-              <Link href="/registration">
-                <a>Register</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/profile">
-                <a>Profile</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/orders">
-                <a>Orders</a>
-              </Link>
-            </li>
+            {user ? (
+              <>
+                <li>
+                  <Link href="/profile">
+                    <a>Profile</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/orders">
+                    <a>Orders</a>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link href="/registration">
+                  <a>Register</a>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="dropdownParent">
@@ -95,6 +101,7 @@ export default function SiteHeader({ categories }) {
             )}
           </ul>
         </div>
+        {user && <h6>Logged in as: {user.username}</h6>}
       </nav>
     </header>
   );
